@@ -1,6 +1,6 @@
 # Optimizers
 
-This is me trying to implement optimizers from scratch to understand them at a greater dpth...
+PyTorch Implementation of Optimizers from scratch
 
 ## References
 
