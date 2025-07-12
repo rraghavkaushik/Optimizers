@@ -16,7 +16,7 @@ class BatchGradientDescent:
             y_pred = self.model(X)
             loss = self.loss_fn(y_pred, y)
 
-            losses.append(loss)
+            self.losses.append(loss.items())
 
             loss.backward()
 
