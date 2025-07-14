@@ -22,7 +22,7 @@ class BatchGradientDescent:
 
             with torch.no_grad():
                 for parameter in self.model.parameters():
-                    parameter -= self.lr * paramter.grad
+                    parameter -= self.lr * parameter.grad
 
             self.model.zero_grad()
 
