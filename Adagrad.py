@@ -49,6 +49,9 @@ class Adagrad:
             avg_loss = self.losses / n_batches
             self.losses.append(avg_loss)
 
+            if verbose and epoch % 50 == 0:
+                print(f'epoch {epoch}, loss: {avg_loss:.4f}')
+
         return self
 
 
