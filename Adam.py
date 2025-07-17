@@ -50,7 +50,7 @@ class Adam:
                 self.v_t[name] = torch.zeros_like(parameter.data)
 
     def fit(self, X, y, epochs = 1000, verbose = True):
-        ''' The losses and the step_count values are re_initialised to resuse this function or to train this optimizer 
+        ''' The losses and the step_count values are re_initialised to reuse this function or to train this optimizer 
         again. '''
 
         self.losses = []
