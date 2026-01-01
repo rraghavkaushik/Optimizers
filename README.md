@@ -19,7 +19,7 @@ A simple GIF demonstrating gradient descent on a convex parabolic loss surface, 
 ## Gradient Descent Variants
 There are 3 main variants of gradient descent and they differ in the amount of data used to compute the gradient of the objective function. 
 
-### BGD - Batch Gradient Descent
+### i. BGD - Batch Gradient Descent
 BGD computes the gradient of the cost function w.r.t. to the parameters θ for the entire training dataset. We perform an update in the direction opposite to the gradient of the loss function and the learning rate(η) determines how large of an update we perform.
 
 Update rule: 
@@ -30,13 +30,17 @@ Batch gradient descent will converge to the global minimum for convex error surf
 
 > It can be very slow and infeasible for datasets that do not fit into the system memory (as the entire dataset must be available to compute gradients).
 
-### SGD - Stochastic Gradient Descent
+### ii. SGD - Stochastic Gradient Descent
 
 <img width="354" height="49" alt="image" src="https://github.com/user-attachments/assets/7c7790be-fe87-4074-acb2-e2759ff96f1f" />
 
 There are two problems associated with batch gradient descent, one being that it has strong convergence guarantees for convex objectives, but in non-convex settings it can get stuck at saddle points or poor local minima due to the complex geometry of the loss landscape. The other one being that, it performs redundant computations for similar datapoints in a large dataset for every parameter update. 
 
-### Why is the SGD gradient unbiased?
+These limitations motivate stochastic gradient descent (SGD), which mitigates these issues by using stochastic estimates of the gradient. In SGD, parameters are updated using individual training samples, resulting in faster updates, improved scalability, and support for online learning.
+
+Does using a random vector from the training sample always help move towards convergence? The answer is mostly yes. This is because the SGD gradient is unbiased.
+
+**Why is the SGD gradient unbiased?**
 
 Let the stochastic gradient for a randomly sampled data point (i) be
 
@@ -44,9 +48,9 @@ $$
 g_i(\theta) = \nabla_\theta J(\theta; x^{(i)}, y^{(i)})
 $$
 
-where the index (i) is sampled uniformly from ({1, ... , N}).
+where the index (i) is sampled uniformly from ({1,...,N}).
 
-**Taking expectation over the random choice of (i)**
+Taking expectation over the random choice of (i)
 
 $$
 \begin{aligned}
@@ -54,7 +58,7 @@ $$
 &= \mathbb{E}*i \left[
 \nabla*\theta J(\theta; x^{(i)}, y^{(i)})
 \right]  &= \sum*{i=1}^{N} \frac{1}{N}
-\nabla_\theta J(\theta; x^{(i)}, y^{(i)}) [6pt]
+\nabla_\theta J(\theta; x^{(i)}, y^{(i)}) 
 &= \nabla_\theta J(\theta)
 \end{aligned}
 $$
@@ -62,7 +66,7 @@ $$
 So, on average, SGD points in the exact same direction as batch gradient descent, even though each individual update uses only a single data point.
 
 
-
+### iii. Mini-Batch Gradient Descent
 
 All implementations are based on the paper 'An overview of gradient descent optimization algorithms' by Sebastian Ruder.
 
